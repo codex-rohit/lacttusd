@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Laktus Bakery & Restaurant — Near NIMS University, Jaipur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ── */
+:root{
+  --cream:#F9F4EE;--warm:#FDFAF6;--choc:#2A1810;--cara:#C8843A;
+  --blush:#E8C4A0;--rose:#D4896A;--dark:#1A0F08;--mid:#6B3C20;
+  --beige:#EDE4D8;--gold:#B8883A;--muted:#8B6B52;
+  --t:cubic-bezier(.25,.46,.45,.94);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--warm);color:var(--choc);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+a{text-decoration:none;color:inherit;}
+button{font-family:'DM Sans',sans-serif;border:none;background:none;}
+
+/* ── IMAGE PLACEHOLDER STYLE ── */
+.ph{
+  background:var(--beige);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:.4rem;width:100%;height:100%;
+  border:1.5px dashed var(--cara);
+  position:relative;overflow:hidden;
+}
+.ph::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(45deg,transparent,transparent 8px,rgba(200,132,58,.04) 8px,rgba(200,132,58,.04) 16px);
+}
+.ph-icon{font-size:1.6rem;opacity:.5;position:relative;z-index:1;}
+.ph-label{
+  font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);text-align:center;padding:0 .5rem;
+  position:relative;z-index:1;line-height:1.5;font-weight:500;
+}
+
+/* ── TYPOGRAPHY ── */
+.f-display{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,12vw,5.5rem);font-weight:300;line-height:1.04;}
+.f-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,8vw,3.5rem);font-weight:300;line-height:1.12;}
+.f-label{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--cara);display:flex;align-items:center;gap:.6rem;}
+.f-label::before{content:'';width:20px;height:1px;background:var(--cara);flex-shrink:0;}
+.f-body{font-size:.93rem;line-height:1.82;color:var(--muted);font-weight:300;}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.85rem 1.7rem;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;border-radius:3px;font-family:'DM Sans',sans-serif;font-weight:500;transition:all .3s var(--t);cursor:pointer;}
+.btn-dark{background:var(--choc);color:var(--cream);}
+.btn-dark:hover,.btn-dark:active{background:var(--cara);}
+.btn-wa{background:#25D366;color:#fff;}
+.btn-wa:hover,.btn-wa:active{background:#1ebe5d;}
+.btn-wa svg{width:16px;height:16px;fill:#fff;flex-shrink:0;}
+.btn-ghost{color:var(--muted);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;display:inline-flex;align-items:center;gap:.4rem;transition:color .3s;}
+.btn-ghost:hover{color:var(--cara);}
+
+/* ── SECTION ── */
+.sec{padding:4rem 1.4rem;}
+@media(min-width:768px){.sec{padding:6rem 3rem;}}
+@media(min-width:1100px){.sec{padding:7rem 5rem;}}
+
+/* ══════════════════════════════════════
+   NAV
+══════════════════════════════════════ */
+#nav{
+  position:fixed;top:0;left:0;width:100%;z-index:200;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:.9rem 1.4rem;
+  background:rgba(253,250,246,.96);backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(200,132,58,.1);
+  transition:box-shadow .4s;
+}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;letter-spacing:.05em;}
+.nav-logo span{color:var(--cara);font-style:italic;}
+.nav-right{display:flex;align-items:center;gap:.7rem;}
+.nav-insta{
+  width:36px;height:36px;border-radius:50%;
+  background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+  display:flex;align-items:center;justify-content:center;
+  transition:transform .3s,box-shadow .3s;
+  flex-shrink:0;
+}
+.nav-insta:active,.nav-insta:hover{transform:scale(1.1);box-shadow:0 4px 14px rgba(220,39,67,.4);}
+.nav-insta svg{width:17px;height:17px;fill:#fff;}
+.nav-cta{padding:.5rem 1rem;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;background:var(--choc);color:var(--cream);border-radius:3px;font-weight:500;transition:background .3s;}
+.nav-cta:active,.nav-cta:hover{background:var(--cara);}
+.nav-links{display:none;}
+@media(min-width:900px){
+  #nav{padding:1.2rem 3rem;}
+  .nav-links{display:flex;gap:1.8rem;list-style:none;}
+  .nav-links a{font-size:.73rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);position:relative;transition:color .3s;}
+  .nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--cara);transition:width .3s;}
+  .nav-links a:hover{color:var(--cara);}
+  .nav-links a:hover::after{width:100%;}
+}
+@media(min-width:1100px){#nav{padding:1.3rem 5rem;}}
+
+/* ══════════════════════════════════════
+   HERO — CINEMATIC FULLSCREEN MOBILE
+══════════════════════════════════════ */
+#hero{
+  position:relative;
+  min-height:100svh;
+  padding-top:62px;
+  display:flex;flex-direction:column;
+  background:var(--dark);
+  overflow:hidden;
+}
+
+/* BIG single background photo slot */
+.hero-bg{
+  position:absolute;inset:0;
+  z-index:0;
+}
+.hero-bg .ph{
+  border:none;background:var(--dark);
+}
+.hero-bg .ph-icon{font-size:2.5rem;}
+.hero-bg .ph-label{color:rgba(255,255,255,.3);font-size:.7rem;}
+
+/* gradient overlay */
+.hero-bg-ov{
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(
+    to bottom,
+    rgba(26,15,8,.2) 0%,
+    rgba(26,15,8,.1) 30%,
+    rgba(26,15,8,.75) 65%,
+    rgba(26,15,8,.97) 100%
+  );
+}
+
+/* text block at bottom */
+.hero-text{
+  position:relative;z-index:2;
+  margin-top:auto;
+  padding:2rem 1.4rem 2.5rem;
+  display:flex;flex-direction:column;gap:1rem;
+}
+.hero-loc{
+  font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--cara);display:flex;align-items:center;gap:.5rem;
+}
+.hero-loc::before{content:'';width:16px;height:1px;background:var(--cara);}
+.hero-title{color:#fff;}
+.hero-title em{font-style:italic;color:var(--cara);}
+.hero-sub{font-size:.88rem;line-height:1.75;color:rgba(255,255,255,.62);font-weight:300;max-width:340px;}
+.hero-btns{display:flex;gap:.7rem;flex-wrap:wrap;padding-top:.3rem;}
+
+/* floating thumbnail strip — 3 small peeks */
+.hero-thumbs{
+  position:relative;z-index:2;
+  display:flex;gap:6px;
+  padding:0 1.4rem 1.4rem;
+}
+.hero-thumb{
+  flex:1;height:72px;border-radius:6px;overflow:hidden;
+  border:1.5px dashed rgba(200,132,58,.5);
+  position:relative;
+}
+.hero-thumb .ph{background:rgba(255,255,255,.06);border:none;}
+.hero-thumb .ph-icon{font-size:.9rem;}
+.hero-thumb .ph-label{font-size:.52rem;color:rgba(255,255,255,.4);}
+.hero-thumb-label{
+  position:absolute;bottom:0;left:0;right:0;
+  background:rgba(26,15,8,.7);
+  font-size:.52rem;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(255,255,255,.7);text-align:center;padding:.28rem;
+}
+
+/* scroll hint */
+.hero-scroll{
+  position:absolute;bottom:5.5rem;right:1.4rem;z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:.4rem;
+  animation:scrollBob 2s ease-in-out infinite;
+}
+.hero-scroll span{font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.35);writing-mode:vertical-rl;}
+.hero-scroll-line{width:1px;height:32px;background:linear-gradient(to bottom,transparent,rgba(200,132,58,.6));}
+@keyframes scrollBob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+
+/* desktop hero: side by side */
+@media(min-width:768px){
+  #hero{flex-direction:row;padding-top:78px;}
+  .hero-bg{position:absolute;inset:0;}
+  .hero-text{padding:3rem;}
+  .hero-thumbs{padding:0 3rem 3rem;gap:10px;}
+  .hero-thumb{height:90px;}
+}
+@media(min-width:1100px){
+  .hero-text{padding:4rem 5rem 2rem;}
+  .hero-thumbs{padding:0 5rem 4rem;gap:12px;}
+  .hero-thumb{height:110px;}
+  .hero-title{font-size:5rem;}
+}
+
+/* ══════════════════════════════════════
+   MARQUEE
+══════════════════════════════════════ */
+.mwrap{background:var(--choc);padding:.75rem 0;overflow:hidden;}
+.mtrack{display:flex;gap:2rem;white-space:nowrap;animation:mq 22s linear infinite;}
+.mtrack span{font-family:'Cormorant Garamond',serif;font-size:.88rem;font-style:italic;color:var(--blush);flex-shrink:0;}
+.mdot{color:var(--cara)!important;font-style:normal!important;}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ══════════════════════════════════════
+   ABOUT
+══════════════════════════════════════ */
+#about{background:var(--cream);}
+.about-mosaic{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:180px 130px;gap:8px;margin-bottom:1.8rem;}
+.am{border-radius:8px;overflow:hidden;}
+.am2{grid-row:1/3;}
+.am3{background:var(--choc);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.3rem;}
+.am3-n{font-family:'Cormorant Garamond',serif;font-size:2.3rem;font-weight:300;color:var(--blush);}
+.am3-l{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);}
+.about-q{background:var(--beige);border-left:3px solid var(--cara);padding:1rem 1.2rem;margin-top:1.4rem;border-radius:0 4px 4px 0;font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--mid);line-height:1.6;}
+@media(min-width:768px){
+  .about-wrap{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+  .about-mosaic{margin-bottom:0;grid-template-rows:240px 160px;}
+}
+
+/* ══════════════════════════════════════
+   SERVICES
+══════════════════════════════════════ */
+#services{background:var(--warm);}
+.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:1.8rem;}
+.svc{border-radius:8px;overflow:hidden;position:relative;}
+.svc-big{grid-column:1/-1;height:180px;}
+.svc-h{height:160px;}
+.svc-ph{position:absolute;inset:0;background-size:cover;background-position:center;}
+.svc::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(26,15,8,.88) 0%,rgba(26,15,8,.1) 60%,transparent 100%);pointer-events:none;}
+.svc-label{position:absolute;bottom:0;left:0;right:0;padding:.8rem;z-index:1;}
+.svc-num{font-family:'Cormorant Garamond',serif;font-size:.7rem;color:var(--cara);letter-spacing:.18em;}
+.svc-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;color:#fff;line-height:1.2;}
+@media(min-width:768px){
+  .svc-grid{grid-template-columns:repeat(3,1fr);}
+  .svc-big{grid-column:1/3;height:320px;}
+  .svc-h{height:320px;}
+}
+
+/* ══════════════════════════════════════
+   GIFTS — HAMPERS + BOUQUETS
+══════════════════════════════════════ */
+#gifts{background:var(--dark);padding:0;}
+.gtabs{
+  display:flex;border-bottom:1px solid rgba(255,255,255,.1);
+  position:sticky;top:62px;z-index:50;background:var(--dark);
+}
+.gtab{
+  flex:1;padding:1rem .5rem;text-align:center;font-size:.73rem;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.4);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .3s;
+}
+.gtab.on{color:var(--cara);border-bottom-color:var(--cara);}
+.gpanel{display:none;padding:2rem 1.4rem;}
+.gpanel.on{display:block;}
+.gpanel .f-label{color:var(--blush);}
+.gpanel .f-label::before{background:var(--blush);}
+.gpanel .f-h2{color:#fff;}
+.gpanel .f-h2 em{color:var(--cara);}
+.gpanel .f-body{color:rgba(255,255,255,.55);}
+
+/* gallery grid */
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:1.4rem 0;}
+.gg-item{border-radius:10px;overflow:hidden;aspect-ratio:1/1;position:relative;}
+.gg-item.tall{aspect-ratio:2/3;}
+.gg-tag{
+  position:absolute;bottom:.55rem;left:.55rem;
+  background:rgba(200,132,58,.92);color:#fff;
+  font-size:.6rem;padding:.2rem .55rem;border-radius:2px;letter-spacing:.08em;text-transform:uppercase;
+  z-index:2;
+}
+
+/* type cards */
+.gtypes{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:1.2rem 0;}
+.gtype{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:.9rem;transition:all .3s;}
+.gtype:active{background:rgba(200,132,58,.14);border-color:rgba(200,132,58,.3);}
+.gtype-ico{width:30px;height:30px;border-radius:50%;background:rgba(200,132,58,.2);display:flex;align-items:center;justify-content:center;margin-bottom:.6rem;}
+.gtype-ico svg{width:14px;height:14px;fill:var(--cara);}
+.gtype-t{font-family:'Cormorant Garamond',serif;font-size:.92rem;color:var(--blush);margin-bottom:.2rem;}
+.gtype-d{font-size:.7rem;color:rgba(255,255,255,.38);line-height:1.55;}
+.gctas{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.1rem;}
+
+/* strip */
+.gstrip{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;height:100px;border-top:2px solid rgba(200,132,58,.2);}
+.gs{overflow:hidden;}
+
+@media(min-width:600px){
+  .gg{grid-template-columns:repeat(3,1fr);}
+  .gstrip{height:140px;}
+}
+@media(min-width:900px){
+  .gpanel{padding:3rem;}
+  .gpanel-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+  .gg{grid-template-columns:1fr 1fr;}
+  .gtabs{top:78px;}
+}
+
+/* ══════════════════════════════════════
+   SPECIALITY
+══════════════════════════════════════ */
+#spec{background:var(--cream);overflow:hidden;position:relative;}
+.spec-float{position:absolute;border-radius:50%;background:var(--cara);opacity:.06;pointer-events:none;animation:fb 4s ease-in-out infinite;}
+.sf1{width:180px;height:180px;top:-50px;right:-50px;}
+.sf2{width:100px;height:100px;bottom:40px;left:-30px;animation-delay:2s;}
+@keyframes fb{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.sc-wrap{position:relative;height:260px;margin-bottom:2rem;}
+.sc{position:absolute;border-radius:10px;overflow:hidden;box-shadow:0 12px 40px rgba(42,24,16,.12);transition:all .55s var(--t);}
+.sc1{width:70%;left:0;top:0;z-index:3;aspect-ratio:4/3;}
+.sc2{width:58%;right:0;top:8%;z-index:2;aspect-ratio:4/3;}
+.sc3{width:52%;left:14%;bottom:0;z-index:1;aspect-ratio:4/3;}
+.sc.lift{transform:translateY(-8px) scale(1.02);}
+.sc-rib{position:absolute;top:-8px;right:-8px;background:var(--cara);color:#fff;padding:.35rem .7rem;border-radius:3px;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;z-index:11;}
+.spec-feats{display:flex;flex-direction:column;}
+.spf{display:flex;gap:1rem;align-items:flex-start;padding:1rem 0;border-bottom:1px solid var(--beige);opacity:.5;transition:opacity .4s;}
+.spf.on,.spf:hover{opacity:1;}
+.spf:last-of-type{border:none;}
+.spf-dot{width:36px;height:36px;border-radius:50%;background:var(--beige);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .3s;}
+.spf.on .spf-dot{background:var(--cara);}
+.spf-dot svg{width:16px;height:16px;fill:var(--mid);transition:fill .3s;}
+.spf.on .spf-dot svg{fill:#fff;}
+.spf-t{font-family:'Cormorant Garamond',serif;font-size:.98rem;color:var(--choc);margin-bottom:.15rem;}
+.spf-d{font-size:.78rem;color:var(--muted);line-height:1.6;}
+@media(min-width:768px){
+  .sc-wrap{height:380px;}
+  .spec-layout{display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:center;}
+  .sc-wrap{margin-bottom:0;}
+}
+
+/* ══════════════════════════════════════
+   PARTY
+══════════════════════════════════════ */
+#party{background:var(--warm);}
+.party-imgs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:1.8rem;}
+.pi{border-radius:8px;overflow:hidden;position:relative;}
+.pi-big{grid-column:1/-1;height:220px;}
+.pi-sm{height:160px;}
+.pi-tag{position:absolute;bottom:.6rem;left:.6rem;background:rgba(200,132,58,.9);color:#fff;font-size:.6rem;padding:.2rem .55rem;border-radius:2px;letter-spacing:.08em;text-transform:uppercase;}
+.pf{display:flex;gap:.9rem;align-items:flex-start;padding:1rem 0;border-bottom:1px solid var(--beige);}
+.pf:last-of-type{border:none;}
+.pf-ico{width:38px;height:38px;border-radius:50%;background:var(--beige);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.pf-ico svg{width:18px;height:18px;fill:var(--cara);}
+.pf-t{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--choc);margin-bottom:.15rem;}
+.pf-d{font-size:.78rem;color:var(--muted);line-height:1.58;}
+@media(min-width:768px){
+  .party-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:4rem;align-items:start;}
+  .party-imgs{margin-bottom:0;}
+  .pi-big{height:280px;}
+}
+
+/* ══════════════════════════════════════
+   MENU
+══════════════════════════════════════ */
+#menu{background:var(--cream);}
+.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:1.8rem;}
+.mi-img{aspect-ratio:3/4;border-radius:8px;overflow:hidden;position:relative;}
+.mi-badge{position:absolute;top:.55rem;right:.55rem;background:var(--choc);color:var(--blush);font-size:.58rem;padding:.18rem .5rem;border-radius:2px;letter-spacing:.08em;text-transform:uppercase;z-index:2;}
+.mi-info{padding:.65rem 0;}
+.mi-nm{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--choc);}
+.mi-sb{font-size:.74rem;color:var(--muted);}
+@media(min-width:600px){.menu-grid{grid-template-columns:repeat(4,1fr);}}
+
+/* ══════════════════════════════════════
+   REVIEWS
+══════════════════════════════════════ */
+#reviews{background:var(--beige);}
+.rv-scroll{display:flex;gap:1rem;overflow-x:auto;padding-bottom:.5rem;margin-top:1.8rem;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.rv-scroll::-webkit-scrollbar{display:none;}
+.rv{flex:0 0 82vw;scroll-snap-align:start;background:var(--warm);border-radius:10px;padding:1.4rem;border-top:3px solid var(--cara);position:relative;}
+.rv-stars{color:var(--gold);font-size:.8rem;letter-spacing:2px;margin-bottom:.8rem;}
+.rv-txt{font-family:'Cormorant Garamond',serif;font-size:.96rem;font-style:italic;color:var(--mid);line-height:1.7;margin-bottom:1rem;}
+.rv-au{display:flex;align-items:center;gap:.7rem;}
+.rv-av{width:30px;height:30px;border-radius:50%;background:var(--blush);display:flex;align-items:center;justify-content:center;font-size:.74rem;font-weight:500;color:var(--mid);flex-shrink:0;}
+.rv-nm{font-size:.8rem;font-weight:500;color:var(--choc);}
+.rv-oc{font-size:.68rem;color:var(--muted);}
+.rv-src{position:absolute;top:.9rem;right:1.2rem;font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+.rv-dots{display:flex;justify-content:center;gap:.4rem;margin-top:1rem;}
+.rv-dot{width:6px;height:6px;border-radius:50%;background:var(--beige);border:1px solid var(--cara);transition:background .3s;}
+.rv-dot.on{background:var(--cara);}
+@media(min-width:768px){
+  .rv-scroll{flex-wrap:wrap;overflow-x:visible;}
+  .rv{flex:1 1 260px;min-width:0;}
+  .rv-dots{display:none;}
+}
+
+/* ══════════════════════════════════════
+   CTA
+══════════════════════════════════════ */
+#cta{background:var(--choc);padding:3.5rem 1.4rem;text-align:center;position:relative;overflow:hidden;}
+#cta::before{content:'';position:absolute;width:360px;height:360px;border-radius:50%;background:rgba(200,132,58,.05);right:-120px;top:-120px;pointer-events:none;}
+.cta-t{color:#fff;font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,8vw,3.5rem);font-weight:300;line-height:1.15;margin-bottom:.6rem;}
+.cta-t em{color:var(--cara);}
+.cta-s{font-size:.88rem;color:rgba(255,255,255,.45);margin-bottom:1.8rem;font-weight:300;}
+.cta-acts{display:flex;flex-direction:column;gap:.7rem;align-items:center;}
+.cta-acts .btn{min-width:210px;}
+@media(min-width:600px){.cta-acts{flex-direction:row;justify-content:center;}.#cta{padding:5rem 3rem;}}
+
+/* ══════════════════════════════════════
+   LOCATION
+══════════════════════════════════════ */
+#location{background:var(--cream);}
+.loc-map{width:100%;height:260px;border-radius:10px;overflow:hidden;margin:1.4rem 0;border:1.5px dashed var(--cara);}
+.loc-map iframe{width:100%;height:100%;border:none;display:block;}
+.loc-details{display:flex;flex-direction:column;gap:1rem;}
+.ld{display:flex;gap:.8rem;align-items:flex-start;}
+.ld-ico{width:34px;height:34px;border-radius:50%;background:var(--beige);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ld-ico svg{width:16px;height:16px;fill:var(--cara);}
+.ld-lb{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cara);margin-bottom:.15rem;}
+.ld-vl{font-size:.88rem;color:var(--choc);line-height:1.45;}
+
+/* phone number highlight */
+.ph-num{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:var(--beige);border:1.5px dashed var(--cara);
+  border-radius:6px;padding:.6rem 1rem;margin-top:.3rem;
+  font-size:.8rem;color:var(--muted);font-weight:500;letter-spacing:.05em;
+}
+.ph-num-label{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cara);display:block;margin-bottom:.1rem;}
+
+@media(min-width:768px){
+  .loc-layout{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+  .loc-map{margin:0;height:380px;}
+}
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+footer{background:var(--dark);padding:3rem 1.4rem 2rem;color:rgba(255,255,255,.5);}
+.ft-logo{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:300;color:var(--blush);margin-bottom:.5rem;}
+.ft-logo span{font-style:italic;color:var(--cara);}
+.ft-desc{font-size:.78rem;line-height:1.75;max-width:270px;font-weight:300;}
+.ft-soc{display:flex;gap:.6rem;margin-top:1.2rem;align-items:center;}
+.ft-insta{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);display:flex;align-items:center;justify-content:center;transition:transform .3s;}
+.ft-insta:hover{transform:scale(1.12);}
+.ft-insta svg{width:15px;height:15px;fill:#fff;}
+.ft-wa{width:34px;height:34px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;transition:transform .3s;}
+.ft-wa:hover{transform:scale(1.12);}
+.ft-wa svg{width:15px;height:15px;fill:#fff;}
+.ft-links{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem;}
+.ft-col-h{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.24);margin-bottom:.9rem;}
+.ft-col ul{list-style:none;}
+.ft-col ul li{margin-bottom:.45rem;}
+.ft-col ul li a{font-size:.78rem;color:rgba(255,255,255,.44);transition:color .3s;}
+.ft-col ul li a:hover{color:var(--cara);}
+.ft-bot{border-top:1px solid rgba(255,255,255,.06);padding-top:1.2rem;margin-top:2rem;font-size:.66rem;display:flex;flex-direction:column;gap:.4rem;}
+.ft-love{color:var(--cara);font-family:'Cormorant Garamond',serif;font-style:italic;}
+@media(min-width:768px){
+  footer{padding:4rem 3rem 2rem;}
+  .ft-wrap{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;}
+  .ft-links{display:contents;}
+  .ft-bot{flex-direction:row;justify-content:space-between;}
+}
+
+/* ══════════════════════════════════════
+   WHATSAPP FLOAT
+══════════════════════════════════════ */
+#waf{position:fixed;bottom:1.3rem;right:1.3rem;z-index:300;display:flex;align-items:center;gap:.6rem;}
+#waf-tip{background:var(--choc);color:var(--cream);font-size:.72rem;padding:.4rem .85rem;border-radius:4px;white-space:nowrap;opacity:0;transform:translateX(6px);transition:all .3s;pointer-events:none;}
+#waf:hover #waf-tip{opacity:1;transform:translateX(0);}
+#waf-btn{width:52px;height:52px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(37,211,102,.38);transition:all .3s var(--t);border:none;position:relative;}
+#waf-btn:hover,#waf-btn:active{transform:scale(1.1);}
+#waf-btn svg{width:26px;height:26px;fill:#fff;}
+.wa-ring{position:absolute;inset:0;border-radius:50%;background:rgba(37,211,102,.28);animation:ring 2s ease-out infinite;}
+@keyframes ring{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.85);opacity:0}}
+
+/* ── REVEALS ── */
+.r{opacity:0;transform:translateY(22px);transition:opacity .65s var(--t),transform .65s var(--t);}
+.r.on{opacity:1;transform:translateY(0);}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+</style>
+</head>
+<body>
+
+<!-- ░░ NAV ░░ -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Lak<span>tus</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">Story</a></li>
+    <li><a href="#gifts">Hampers</a></li>
+    <li><a href="#spec">Speciality</a></li>
+    <li><a href="#party">Party Zone</a></li>
+    <li><a href="#location">Find Us</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="https://www.instagram.com/laktusbakery/" target="_blank" class="nav-insta" aria-label="Instagram">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+    <button class="nav-cta" onclick="wa('order')">Order Now</button>
+  </div>
+</nav>
+
+<!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+     HERO — CINEMATIC FULLSCREEN
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
+<section id="hero">
+
+  <!-- BIG HERO BACKGROUND PHOTO -->
+  <div class="hero-bg" style="background:url('hero-background.jpg') center/cover no-repeat;"></div>
+  <div class="hero-bg-ov"></div>
+
+  <!-- SCROLL HINT -->
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+
+  <!-- TEXT BLOCK -->
+  <div class="hero-text">
+    <p class="hero-loc r">Near NIMS University · Jaipur</p>
+    <h1 class="f-display hero-title r d1">
+      Where Every<br>Bite is <em>Crafted</em><br>for You
+    </h1>
+    <p class="hero-sub r d2">Premium artisan bakery, custom cakes, luxury hampers & chocolate bouquets — Jaipur's most loved modern bakery.</p>
+    <div class="hero-btns r d3">
+      <button class="btn btn-dark" onclick="wa('customise')">Customise Now</button>
+      <a href="#gifts" class="btn-ghost">Explore Hampers →</a>
+    </div>
+  </div>
+
+  <!-- FLOATING THUMBNAIL STRIP -->
+  <div class="hero-thumbs r d4">
+    <div class="hero-thumb" style="background:url('thumb-custom-cake.jpg') center/cover no-repeat;">
+      <div class="hero-thumb-label">Custom Cakes</div>
+    </div>
+    <div class="hero-thumb" style="background:url('thumb-hamper.jpg') center/cover no-repeat;">
+      <div class="hero-thumb-label">Hampers</div>
+    </div>
+    <div class="hero-thumb" style="background:url('thumb-bouquet.jpg') center/cover no-repeat;">
+      <div class="hero-thumb-label">Bouquets</div>
+    </div>
+    <div class="hero-thumb" style="background:url('thumb-party-zone.jpg') center/cover no-repeat;">
+      <div class="hero-thumb-label">Party Zone</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ░░ MARQUEE ░░ -->
+<div class="mwrap">
+  <div class="mtrack">
+    <span>Custom Cakes</span><span class="mdot">◆</span><span>Luxury Hampers</span><span class="mdot">◆</span><span>Bouquets</span><span class="mdot">◆</span><span>Premium Chocolates</span><span class="mdot">◆</span><span>Party Zone</span><span class="mdot">◆</span><span>Artisan Bakery</span><span class="mdot">◆</span><span>Corporate Gifting</span><span class="mdot">◆</span><span>Birthday Cakes</span><span class="mdot">◆</span>
+    <span>Custom Cakes</span><span class="mdot">◆</span><span>Luxury Hampers</span><span class="mdot">◆</span><span>Bouquets</span><span class="mdot">◆</span><span>Premium Chocolates</span><span class="mdot">◆</span><span>Party Zone</span><span class="mdot">◆</span><span>Artisan Bakery</span><span class="mdot">◆</span><span>Corporate Gifting</span><span class="mdot">◆</span><span>Birthday Cakes</span><span class="mdot">◆</span>
+  </div>
+</div>
+
+<!-- ░░ ABOUT ░░ -->
+<section id="about" class="sec">
+  <div class="about-wrap">
+    <div class="about-mosaic r">
+      <div class="am" style="border-radius:8px;overflow:hidden;background:url('about-shop-interior.jpg') center/cover no-repeat;"></div>
+      <div class="am am2" style="border-radius:8px;overflow:hidden;background:url('about-signature-cake.jpg') center/cover no-repeat;"></div>
+      <div class="am am3" style="border-radius:8px;">
+        <div class="am3-n">100%</div>
+        <div class="am3-l">Pure Ingredients</div>
+      </div>
+    </div>
+    <div>
+      <p class="f-label r">Our Story</p>
+      <h2 class="f-h2 r d1" style="margin:.6rem 0 .8rem;">A Modern Bakery<br>Built on <em style="color:var(--rose);">Passion</em></h2>
+      <p class="f-body r d2">Laktus was born from one belief — that exceptional food, beautiful presentation, and heartfelt personalisation can turn any moment into an unforgettable memory.</p>
+      <p class="f-body r d2" style="margin-top:.8rem;">Right near NIMS University in Jaipur, we're the go-to destination for students, families, and celebrations of every kind.</p>
+      <div class="about-q r d3">"Every creation at Laktus is designed around you — your taste, your occasion, your story."</div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ SERVICES ░░ -->
+<section id="services" class="sec">
+  <div class="r">
+    <p class="f-label">What We Offer</p>
+    <h2 class="f-h2" style="margin-top:.6rem;">Crafted for Every <em style="color:var(--rose);">Occasion</em></h2>
+  </div>
+  <div class="svc-grid r d1">
+    <div class="svc svc-big" style="background:url('service-custom-cake.jpg') center/cover no-repeat;">
+      <div class="svc-label"><div class="svc-num">01</div><div class="svc-name">Custom Cakes</div></div>
+    </div>
+    <div class="svc svc-h" style="background:url('service-hamper.jpg') center/cover no-repeat;">
+      <div class="svc-label"><div class="svc-num">02</div><div class="svc-name">Luxury Hampers</div></div>
+    </div>
+    <div class="svc svc-h" style="background:url('service-chocolates.jpg') center/cover no-repeat;">
+      <div class="svc-label"><div class="svc-num">03</div><div class="svc-name">Chocolates</div></div>
+    </div>
+    <div class="svc svc-h" style="background:url('service-party-zone.jpg') center/cover no-repeat;">
+      <div class="svc-label"><div class="svc-num">04</div><div class="svc-name">Party Zone</div></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ░░ HAMPERS
+
+<!-- ░░ HAMPERS + BOUQUETS ░░ -->
+<section id="gifts">
+  <div class="gtabs" id="giftTabs">
+    <button class="gtab on" data-tab="hamper" onclick="switchTab('hamper')">🎁 Gift Hampers</button>
+    <button class="gtab" data-tab="bouquet" onclick="switchTab('bouquet')">💐 Bouquets</button>
+  </div>
+
+  <!-- HAMPER PANEL -->
+  <div class="gpanel on" id="tab-hamper">
+    <div class="gpanel-layout">
+      <div>
+        <div class="gg">
+          <div class="gg-item" style="background:url('hamper-festival.jpg') center/cover no-repeat;"><span class="gg-tag">Festival</span></div>
+          <div class="gg-item tall" style="background:url('hamper-premium-box.jpg') center/cover no-repeat;"><span class="gg-tag">Premium</span></div>
+          <div class="gg-item" style="background:url('hamper-corporate.jpg') center/cover no-repeat;"><span class="gg-tag" style="background:rgba(26,15,8,.88);">Corporate</span></div>
+          <div class="gg-item" style="background:url('hamper-wedding.jpg') center/cover no-repeat;"><span class="gg-tag">Wedding</span></div>
+        </div>
+      </div>
+      <div>
+        <p class="f-label r">Our Signature Offering</p>
+        <h2 class="f-h2 r d1" style="margin:.6rem 0 .8rem;">Customised <em>Hampers</em><br>for Every Moment</h2>
+        <p class="f-body r d2">At Laktus, hampers aren't just gift boxes — they're crafted experiences. From premium chocolates and bakery items to personalised notes and branded ribbons, every hamper tells a story.</p>
+        <div class="gtypes r d3">
+          <div class="gtype"><div class="gtype-ico"><svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2zM12 2l-4 5h8l-4-5z"/></svg></div><div class="gtype-t">Festival</div><div class="gtype-d">Diwali, Eid, Christmas — themed</div></div>
+          <div class="gtype"><div class="gtype-ico"><svg viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12z"/></svg></div><div class="gtype-t">Corporate</div><div class="gtype-d">Branded bulk orders for clients</div></div>
+          <div class="gtype"><div class="gtype-ico"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div><div class="gtype-t">Personal</div><div class="gtype-d">Surprise someone special</div></div>
+          <div class="gtype"><div class="gtype-ico"><svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg></div><div class="gtype-t">Wedding</div><div class="gtype-d">Elegant return gifts</div></div>
+        </div>
+        <div class="gctas r d4">
+          <button class="btn btn-wa" onclick="wa('hamper')"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Build Your Hamper</button>
+          <button class="btn btn-dark" onclick="wa('idea')">Share Your Idea</button>
+        </div>
+      </div>
+    </div>
+    <div class="gstrip">
+      <div class="gs" style="background:url('hamper-strip-1.jpg') center/cover no-repeat;"></div>
+      <div class="gs" style="background:url('hamper-strip-2.jpg') center/cover no-repeat;"></div>
+      <div class="gs" style="background:url('hamper-strip-3.jpg') center/cover no-repeat;"></div>
+      <div class="gs" style="background:url('hamper-strip-4.jpg') center/cover no-repeat;"></div>
+    </div>
+  </div>
+
+  <!-- BOUQUET PANEL -->
+  <div class="gpanel" id="tab-bouquet">
+    <div class="gpanel-layout">
+      <div>
+        <div class="gg">
+          <div class="gg-item" style="background:url('bouquet-chocolate.jpg') center/cover no-repeat;"><span class="gg-tag">Chocolate</span></div>
+          <div class="gg-item tall" style="background:url('bouquet-roses.jpg') center/cover no-repeat;"><span class="gg-tag">Roses</span></div>
+          <div class="gg-item" style="background:url('bouquet-luxury.jpg') center/cover no-repeat;"><span class="gg-tag" style="background:rgba(26,15,8,.88);">Luxury</span></div>
+          <div class="gg-item" style="background:url('bouquet-birthday.jpg') center/cover no-repeat;"><span class="gg-tag">Birthday</span></div>
+        </div>
+      </div>
+      <div>
+        <p class="f-label r">New Offering</p>
+        <h2 class="f-h2 r d1" style="margin:.6rem 0 .8rem;">Custom <em>Bouquets</em><br>That Wow</h2>
+        <p class="f-body r d2">Beyond flowers — we craft stunning bouquets made of Ferrero Rocher, Dairy Milk, roses, and your favourite chocolates. Edible, beautiful, and completely personalised.</p>
+        <div class="gtypes r d3">
+          <div class="gtype"><div class="gtype-ico"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg></div><div class="gtype-t">Chocolate</div><div class="gtype-d">Ferrero, Dairy Milk, KitKat</div></div>
+          <div class="gtype"><div class="gtype-ico"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div><div class="gtype-t">Flower + Choco</div><div class="gtype-d">Roses mixed with chocolates</div></div>
+          <div class="gtype"><div class="gtype-ico"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><div class="gtype-t">Birthday</div><div class="gtype-d">Themed personalised bouquet</div></div>
+          <div class="gtype"><div class="gtype-ico"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg></div><div class="gtype-t">Fully Custom</div><div class="gtype-d">Pick your chocolates & flowers</div></div>
+        </div>
+        <div class="gctas r d4">
+          <button class="btn btn-wa" onclick="wa('bouquet')"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Order a Bouquet</button>
+          <button class="btn btn-dark" onclick="wa('idea')">Customise Yours</button>
+        </div>
+      </div>
+    </div>
+    <div class="gstrip">
+      <div class="gs" style="background:url('bouquet-strip-1.jpg') center/cover no-repeat;"></div>
+      <div class="gs" style="background:url('bouquet-strip-2.jpg') center/cover no-repeat;"></div>
+      <div class="gs" style="background:url('bouquet-strip-3.jpg') center/cover no-repeat;"></div>
+      <div class="gs" style="background:url('bouquet-strip-4.jpg') center/cover no-repeat;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ SPECIALITY ░░ -->
+<section id="spec" class="sec">
+  <div class="spec-float sf1"></div><div class="spec-float sf2"></div>
+  <div class="r"><p class="f-label">What Makes Us Different</p><h2 class="f-h2" style="margin-top:.6rem;">We <em style="color:var(--rose);">Customise</em><br>Everything</h2></div>
+  <div class="spec-layout" style="margin-top:2rem;">
+    <div class="sc-wrap r d2">
+      <div class="sc sc1" id="sc1" style="background:url('spec-card-cake.jpg') center/cover no-repeat;">
+        <div class="sc-rib">Custom</div>
+      </div>
+      <div class="sc sc2" id="sc2" style="background:url('service-hamper.jpg') center/cover no-repeat;"></div>
+      <div class="sc sc3" id="sc3" style="background:url('spec-card-bouquet.jpg') center/cover no-repeat;"></div>
+    </div>
+    <div class="spec-feats">
+      <div class="spf on" data-c="sc1"><div class="spf-dot"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><div><div class="spf-t">Custom Cakes — Your Vision</div><div class="spf-d">Any flavour, design, theme. We don't do templates.</div></div></div>
+      <div class="spf" data-c="sc2"><div class="spf-dot"><svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/></svg></div><div><div class="spf-t">Hampers Built Around You</div><div class="spf-d">You pick every item, we make it look extraordinary.</div></div></div>
+      <div class="spf" data-c="sc3"><div class="spf-dot"><svg viewBox="0 0 24 24"><path d="M12 3C8.13 3 5 6.13 5 10c0 4.17 4.42 9.92 6.24 12.11.4.48 1.13.48 1.53 0C14.58 19.92 19 14.17 19 10c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 7.5 12 7.5s2.5 1.12 2.5 2.5S13.38 12.5 12 12.5z"/></svg></div><div><div class="spf-t">Chocolate Collections</div><div class="spf-d">Monogrammed boxes — your choice of flavours.</div></div></div>
+      <div class="spf" data-c="sc1"><div class="spf-dot"><svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg></div><div><div class="spf-t">Event Catering</div><div class="spf-d">Dessert tables & pastry spreads for any occasion.</div></div></div>
+      <div style="padding-top:1.2rem;"><button class="btn btn-dark" onclick="wa('idea')">WhatsApp Your Idea</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ PARTY ZONE ░░ -->
+<section id="party" class="sec">
+  <div class="r"><p class="f-label">Celebrate in Style</p><h2 class="f-h2" style="margin-top:.6rem;">The Laktus <em style="color:var(--rose);">Party Zone</em></h2></div>
+  <div class="party-layout" style="margin-top:2rem;">
+    <div class="party-imgs r d1">
+      <div class="pi pi-big" style="background:url('party-main.jpg') center/cover no-repeat;"><div class="pi-tag">Private Party Space</div></div>
+      <div class="pi pi-sm" style="background:url('party-cafe-vibes.jpg') center/cover no-repeat;"><div class="pi-tag">Café Vibes</div></div>
+      <div class="pi pi-sm" style="background:url('party-birthday-setup.jpg') center/cover no-repeat;"><div class="pi-tag">Birthday Mode</div></div>
+    </div>
+    <div>
+      <p class="f-body r" style="margin-bottom:1rem;">Our café-style party zone is perfect for birthdays, college hangouts, and special moments — right near NIMS University. Bring your squad, we'll handle everything.</p>
+      <div class="r d1">
+        <div class="pf"><div class="pf-ico"><svg viewBox="0 0 24 24"><path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/></svg></div><div><div class="pf-t">Birthdays & College Parties</div><div class="pf-d">Décor, cake, balloons — all sorted. Up to 30 guests.</div></div></div>
+        <div class="pf"><div class="pf-ico"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div><div><div class="pf-t">Anniversaries & Romance</div><div class="pf-d">Floral décor, mood lighting, personalised desserts.</div></div></div>
+        <div class="pf"><div class="pf-ico"><svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2zM12 2l-4 5h8l-4-5z"/></svg></div><div><div class="pf-t">Freshers, Farewell & NIMS Events</div><div class="pf-d">Affordable packages — great food, great vibes.</div></div></div>
+        <div class="pf"><div class="pf-ico"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg></div><div><div class="pf-t">Corporate & Baby Showers</div><div class="pf-d">Elegant setups with catering and custom hampers.</div></div></div>
+      </div>
+      <div style="margin-top:1.5rem;" class="r"><button class="btn btn-dark" onclick="wa('party')">Book Your Party Zone</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ MENU ░░ -->
+<section id="menu" class="sec">
+  <div class="r"><p class="f-label">Taste Our Best</p><h2 class="f-h2" style="margin-top:.6rem;">Premium Picks &<br><em style="color:var(--rose);">Daily Bestsellers</em></h2></div>
+  <div class="menu-grid r d1">
+    <div>
+      <div class="mi-img" style="background:url('menu-truffle-cake.jpg') center/cover no-repeat;"><span class="mi-badge">Bestseller</span></div>
+      <div class="mi-info"><div class="mi-nm">Belgian Truffle Cake</div><div class="mi-sb">Dark chocolate ganache, hand-finished</div></div>
+    </div>
+    <div>
+      <div class="mi-img" style="background:url('menu-chocolate-box.jpg') center/cover no-repeat;"><span class="mi-badge">Premium</span></div>
+      <div class="mi-info"><div class="mi-nm">Luxury Chocolate Box</div><div class="mi-sb">Assorted artisan truffles & pralines</div></div>
+    </div>
+    <div>
+      <div class="mi-img" style="background:url('menu-croissants.jpg') center/cover no-repeat;"></div>
+      <div class="mi-info"><div class="mi-nm">Butter Croissants</div><div class="mi-sb">Laminated, flaky, baked fresh every morning</div></div>
+    </div>
+    <div>
+      <div class="mi-img" style="background:url('hamper-festival.jpg') center/cover no-repeat;"><span class="mi-badge">New</span></div>
+      <div class="mi-info"><div class="mi-nm">Festival Gift Hamper</div><div class="mi-sb">Fully customisable, premium packaged</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ REVIEWS ░░ -->
+<section id="reviews" class="sec">
+  <div style="text-align:center;margin-bottom:1.8rem;" class="r">
+    <p class="f-label" style="justify-content:center;">What People Say</p>
+    <h2 class="f-h2" style="margin-top:.6rem;">Real Stories,<br><em style="color:var(--rose);">Real Love</em></h2>
+  </div>
+  <div class="rv-scroll" id="rvScroll">
+    <div class="rv"><span class="rv-src">Google Review</span><div class="rv-stars">★★★★★</div><p class="rv-txt">"Ordered a fully custom birthday cake — they nailed every detail. Taste and design both outstanding."</p><div class="rv-au"><div class="rv-av">PS</div><div><div class="rv-nm">Priya Sharma</div><div class="rv-oc">Birthday Cake</div></div></div></div>
+    <div class="rv"><span class="rv-src">Google Review</span><div class="rv-stars">★★★★★</div><p class="rv-txt">"The hamper we sent to our clients was the best corporate gift decision. Premium, beautifully packed."</p><div class="rv-au"><div class="rv-av">RV</div><div><div class="rv-nm">Rahul Verma</div><div class="rv-oc">Corporate Hamper</div></div></div></div>
+    <div class="rv"><span class="rv-src">Google Review</span><div class="rv-stars">★★★★★</div><p class="rv-txt">"Celebrated our anniversary at the party zone. The décor, food, and cake — everything was perfect."</p><div class="rv-au"><div class="rv-av">AM</div><div><div class="rv-nm">Anita & Mohit</div><div class="rv-oc">Anniversary Party Zone</div></div></div></div>
+  </div>
+  <div class="rv-dots" id="rvDots"><div class="rv-dot on"></div><div class="rv-dot"></div><div class="rv-dot"></div></div>
+</section>
+
+<!-- ░░ CTA ░░ -->
+<section id="cta">
+  <div class="r"><h2 class="cta-t">Your Perfect <em>Occasion</em><br>Starts Here</h2><p class="cta-s">Walk in, WhatsApp us, or call — let's make it unforgettable.</p></div>
+  <div class="cta-acts r d1">
+    <button class="btn btn-wa" onclick="wa('order')"><svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:#fff;flex-shrink:0;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp Order</button>
+    <a href="#location" class="btn btn-ghost" style="color:rgba(255,255,255,.45);">Find Us on Map</a>
+  </div>
+</section>
+
+<!-- ░░ LOCATION ░░ -->
+<section id="location" class="sec">
+  <div class="r"><p class="f-label">Visit Us</p><h2 class="f-h2" style="margin-top:.6rem;">We're Near<br><em style="color:var(--rose);">NIMS University</em></h2></div>
+  <div class="loc-layout" style="margin-top:2rem;">
+    <div class="loc-map r">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3554.4!2d75.9554501!3d27.1946425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396da70030404631%3A0x2099ca7e3bfac173!2sLaktus+Bakery+%26+Restaurant!5e0!3m2!1sen!2sin!4v1" loading="lazy" allowfullscreen></iframe>
+    </div>
+    <div class="loc-details r d1">
+      <div class="ld"><div class="ld-ico"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div><div><div class="ld-lb">Address</div><div class="ld-vl">Laktus Bakery & Restaurant<br>Near NIMS University, Jaipur</div></div></div>
+      <div class="ld"><div class="ld-ico"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg></div><div><div class="ld-lb">Hours</div><div class="ld-vl">Daily: 10:00 AM – 10:00 PM</div></div></div>
+
+      <!-- PHONE NUMBER PLACEHOLDER -->
+      <div class="ld">
+        <div class="ld-ico"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
+        <div>
+          <div class="ld-lb">Contact</div>
+          <div class="ph-num">
+            <span>📞</span>
+            <div>
+              <div class="ph-num-label">← Replace with your number</div>
+              <span id="phone-display">+91 XXXXX XXXXX</span>
+            </div>
+          </div>
+          <div class="ph-num" style="margin-top:.5rem;">
+            <span>✉️</span>
+            <div>
+              <div class="ph-num-label">← Replace with your email</div>
+              <span>laktus@gmail.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="https://maps.app.goo.gl/Sb8SouKmRY7CHeS9A" class="btn btn-dark" target="_blank" style="margin-top:.5rem;width:fit-content;">Open in Google Maps</a>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ FOOTER ░░ -->
+<footer>
+  <div class="ft-wrap">
+    <div>
+      <div class="ft-logo">Lak<span>tus</span></div>
+      <p class="ft-desc">Jaipur's modern artisan bakery — custom cakes, luxury hampers, bouquets, premium chocolates, and private party zones near NIMS University.</p>
+      <div class="ft-soc">
+        <a href="https://www.instagram.com/laktusbakery/" target="_blank" class="ft-insta" aria-label="Instagram @laktusbakery"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+        <a href="#" onclick="return wa('float')" class="ft-wa" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+      </div>
+    </div>
+    <div class="ft-links">
+      <div class="ft-col"><div class="ft-col-h">Quick Links</div><ul><li><a href="#about">Our Story</a></li><li><a href="#gifts">Hampers & Bouquets</a></li><li><a href="#spec">Customisation</a></li><li><a href="#party">Party Zone</a></li><li><a href="#menu">Menu</a></li></ul></div>
+      <div class="ft-col"><div class="ft-col-h">Order</div><ul><li><a href="#" onclick="return wa('birthday')">Birthday Cakes</a></li><li><a href="#" onclick="return wa('hamper')">Gift Hampers</a></li><li><a href="#" onclick="return wa('bouquet')">Bouquets</a></li><li><a href="#" onclick="return wa('corporate')">Corporate Gifting</a></li><li><a href="#" onclick="return wa('party')">Party Bookings</a></li></ul></div>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <span>© 2025 Laktus Bakery & Restaurant, Jaipur</span>
+    <span class="ft-love">Crafted with love ♥</span>
+  </div>
+</footer>
+
+<!-- ░░ WHATSAPP FLOAT ░░ -->
+<div id="waf">
+  <div id="waf-tip">Chat on WhatsApp</div>
+  <div style="position:relative;">
+    <div class="wa-ring"></div>
+    <button id="waf-btn" onclick="wa('float')" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+// ── WHATSAPP ──────────────────────────────────────────────────
+// ↓↓↓ REPLACE THIS NUMBER with Laktus actual WhatsApp number ↓↓↓
+const WA = '91XXXXXXXXXX';
+// ↑↑↑ e.g. '919876543210' for +91 98765 43210 ↑↑↑
+
+const MSG = {
+  float:     "Hi Laktus! 👋 I'd like to know more about your offerings.",
+  order:     "Hi Laktus! 🎂 I'd like to place an order. Can you help?",
+  customise: "Hi Laktus! I have a custom order idea. My idea is to ____",
+  hamper:    "Hi Laktus! 🎁 I'd like to build a custom hamper. My occasion is ____ and my budget is ____",
+  bouquet:   "Hi Laktus! 💐 I'd like to order a custom bouquet. My preference is ____",
+  idea:      "Hi Laktus! I have an idea I'd love to share. My idea is to ____",
+  party:     "Hi Laktus! 🎉 I'd like to book the Party Zone. Occasion: ____ | Date: ____",
+  birthday:  "Hi Laktus! 🎂 I want a custom birthday cake. Theme: ____ | Date: ____",
+  wedding:   "Hi Laktus! 💍 I'm interested in a wedding cake. Can we discuss?",
+  corporate: "Hi Laktus! I need corporate gift hampers. Quantity: ____ | Occasion: ____",
+};
+const FLOAT_POOL = [
+  "Hi Laktus! 👋 I'd like to know more about your offerings.",
+  "Hi Laktus! I was checking your website — can we chat?",
+  "Hi Laktus! 🎂 I want to place a custom order. Can you help?",
+  "Hi Laktus! 💐 Tell me about your hampers and bouquets!",
+  "Hi Laktus! 🎉 I'd love to book the party zone — details please?"
+];
+function wa(t){
+  const msg = t==='float' ? FLOAT_POOL[Math.floor(Math.random()*FLOAT_POOL.length)] : (MSG[t]||MSG.float);
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,'_blank');
+  return false;
+}
+
+// ── TABS ─────────────────────────────────────────────────────
+function switchTab(id){
+  document.querySelectorAll('.gtab').forEach(t=>t.classList.toggle('on',t.dataset.tab===id));
+  document.querySelectorAll('.gpanel').forEach(p=>p.classList.toggle('on',p.id==='tab-'+id));
+}
+
+// ── SCROLL REVEAL ────────────────────────────────────────────
+const obs = new IntersectionObserver(e=>{
+  e.forEach(x=>{ if(x.isIntersecting) x.target.classList.add('on'); });
+},{threshold:0.08});
+document.querySelectorAll('.r').forEach(el=>obs.observe(el));
+setTimeout(()=>document.querySelectorAll('#hero .r').forEach(el=>el.classList.add('on')),100);
+
+// ── NAV SHADOW ───────────────────────────────────────────────
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').style.boxShadow = scrollY>30?'0 2px 20px rgba(42,24,16,.1)':'none';
+},{passive:true});
+
+// ── REVIEW DOTS ──────────────────────────────────────────────
+const sc = document.getElementById('rvScroll');
+const dots = document.querySelectorAll('.rv-dot');
+if(sc&&dots.length){
+  sc.addEventListener('scroll',()=>{
+    const i = Math.round(sc.scrollLeft/sc.offsetWidth);
+    dots.forEach((d,j)=>d.classList.toggle('on',i===j));
+  },{passive:true});
+}
+
+// ── SPECIALITY CARD CYCLE ────────────────────────────────────
+const spfs=document.querySelectorAll('.spf');
+const sCards={sc1:document.getElementById('sc1'),sc2:document.getElementById('sc2'),sc3:document.getElementById('sc3')};
+let si=0;
+function activateSF(i){
+  spfs.forEach(s=>s.classList.remove('on'));
+  spfs[i].classList.add('on');
+  const cid=spfs[i].dataset.c;
+  Object.values(sCards).forEach(c=>{if(c){c.style.zIndex=1;c.classList.remove('lift');}});
+  if(sCards[cid]){sCards[cid].style.zIndex=5;sCards[cid].classList.add('lift');}
+}
+spfs.forEach((sf,i)=>{sf.addEventListener('mouseenter',()=>{si=i;activateSF(i);});});
+setInterval(()=>{si=(si+1)%spfs.length;activateSF(si);},2800);
+</script>
+</body>
+</html>
