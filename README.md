@@ -1,2 +1,1 @@
-# Laktus
-Bakery and Restaurant 
+akery and Restaurant 
